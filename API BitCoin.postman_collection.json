@@ -1,0 +1,684 @@
+{
+	"info": {
+		"_postman_id": "01988b04-3ed6-45ce-8731-e8c8f99d8f4e",
+		"name": "API BitCoin Github",
+		"description": "API de Bitcoin sem nenhuma transação efetiva, API feita para conhecimento de criar API com Lumen\n\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Account",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Glauber Borges",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "glauber.borges1@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "mudar123",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "mudar123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8888/api/account/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"account",
+								"register"
+							]
+						},
+						"description": "Regiter a new user"
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODg4OFwvYXBpXC9sb2dpbiIsImlhdCI6MTU4ODM5MTM5NSwiZXhwIjoxNTg4Mzk0OTk1LCJuYmYiOjE1ODgzOTEzOTUsImp0aSI6ImRnYUhoS0hFTkF3SlNPcDAiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.kgl_Rdfg2U8SQ0NLPejfPZ9VJpLdnDxuWqNqglHmWxo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "glauber.borges1@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{apiUrl}}/account/login",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"account",
+								"login"
+							]
+						},
+						"description": "Login the API"
+					},
+					"response": []
+				},
+				{
+					"name": "Deposit",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODg4OFwvYXBpXC9hY2NvdW50XC9sb2dpbiIsImlhdCI6MTU4OTM5NzI4MSwiZXhwIjoxNTg5NDAwODgxLCJuYmYiOjE1ODkzOTcyODEsImp0aSI6IjE5SUZQTE1sS3BsZmszNkkiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.FI5pgRhRsRiAcdlLD6eGAcqbKhvvPERUqcSvyQvYkSs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "amount",
+									"value": "1000",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/account/deposit",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"account",
+								"deposit"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Invalid amount",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"amount\": -10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiUrl}}/account/deposit",
+									"host": [
+										"{{apiUrl}}"
+									],
+									"path": [
+										"account",
+										"deposit"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "75"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 22 Dec 2019 23:39:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 400,\n    \"message\": \"its not possible to deposite negative values\"\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"amount\": 87.5\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiUrl}}/account/deposit",
+									"host": [
+										"{{apiUrl}}"
+									],
+									"path": [
+										"account",
+										"deposit"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "17"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 22 Dec 2019 23:38:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"balance\": 462.5\n}"
+						}
+					]
+				},
+				{
+					"name": "Balance",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODg4OFwvYXBpXC9hY2NvdXRcL2xvZ2luIiwiaWF0IjoxNTg4Njc4OTExLCJleHAiOjE1ODg2ODI1MTEsIm5iZiI6MTU4ODY3ODkxMSwianRpIjoiOUtlZkJEY3I4MEEzMXVBaiIsInN1YiI6MSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.VCKT_Wn9jfa2xyjLhFFAlBTE0-k93BHhY5W4ruYNLxA\"",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{apiUrl}}/account/balance",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"account",
+								"balance"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "API de Bitcoin sem nenhuma transação efetiva, API feita para conhecimento de criar API com Lumen",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Crypto",
+			"item": [
+				{
+					"name": "Get Price",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODg4OFwvYXBpXC9hY2NvdW50XC9sb2dpbiIsImlhdCI6MTU4OTMzNjI4NSwiZXhwIjoxNTg5MzM5ODg1LCJuYmYiOjE1ODkzMzYyODUsImp0aSI6Ik83amRzQ1h2RTQzWmJicmciLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.nyNOZHEfJy0DtOHQUkswzKHSmqjGoG9KEV94qg2k6-g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{apiUrl}}/crypto/btc/price",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"crypto",
+								"btc",
+								"price"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Purchase",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODg4OFwvYXBpXC9hY2NvdW50XC9sb2dpbiIsImlhdCI6MTU4OTMzNjI4NSwiZXhwIjoxNTg5MzM5ODg1LCJuYmYiOjE1ODkzMzYyODUsImp0aSI6Ik83amRzQ1h2RTQzWmJicmciLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.nyNOZHEfJy0DtOHQUkswzKHSmqjGoG9KEV94qg2k6-g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "amount",
+									"value": "1000",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/crypto/btc/purchase",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"crypto",
+								"btc",
+								"purchase"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Position",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODg4OFwvYXBpXC9hY2NvdW50XC9sb2dpbiIsImlhdCI6MTU4OTMzNjI4NSwiZXhwIjoxNTg5MzM5ODg1LCJuYmYiOjE1ODkzMzYyODUsImp0aSI6Ik83amRzQ1h2RTQzWmJicmciLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.nyNOZHEfJy0DtOHQUkswzKHSmqjGoG9KEV94qg2k6-g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{apiUrl}}/crypto/btc/position/",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"crypto",
+								"btc",
+								"position",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sell",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODg4OFwvYXBpXC9hY2NvdW50XC9sb2dpbiIsImlhdCI6MTU4OTMzNjI4NSwiZXhwIjoxNTg5MzM5ODg1LCJuYmYiOjE1ODkzMzYyODUsImp0aSI6Ik83amRzQ1h2RTQzWmJicmciLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.nyNOZHEfJy0DtOHQUkswzKHSmqjGoG9KEV94qg2k6-g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "amount",
+									"value": "0.01913878",
+									"type": "text"
+								},
+								{
+									"key": "desired_value",
+									"value": "52000.53",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/crypto/btc/sales/order",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"crypto",
+								"btc",
+								"sales",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Volume",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODg4OFwvYXBpXC9hY2NvdW50XC9sb2dpbiIsImlhdCI6MTU4OTM5MDczMywiZXhwIjoxNTg5Mzk0MzMzLCJuYmYiOjE1ODkzOTA3MzMsImp0aSI6ImlqRjMyTE50c21yM0JDTHMiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.Xg-UwXcAAEu1xwzJV-8O0kYdBgl1nBI7RtzR5hFFroM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{apiUrl}}/crypto/btc/volume",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"crypto",
+								"btc",
+								"volume"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "History",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODg4OFwvYXBpXC9hY2NvdW50XC9sb2dpbiIsImlhdCI6MTU4OTM5MDczMywiZXhwIjoxNTg5Mzk0MzMzLCJuYmYiOjE1ODkzOTA3MzMsImp0aSI6ImlqRjMyTE50c21yM0JDTHMiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.Xg-UwXcAAEu1xwzJV-8O0kYdBgl1nBI7RtzR5hFFroM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{apiUrl}}/crypto/btc/history",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"crypto",
+								"btc",
+								"history"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Extract",
+			"item": [
+				{
+					"name": "Extract",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODg4OFwvYXBpXC9hY2NvdW50XC9sb2dpbiIsImlhdCI6MTU4OTM0MDQ5MiwiZXhwIjoxNTg5MzQ0MDkyLCJuYmYiOjE1ODkzNDA0OTIsImp0aSI6InZmT3AyckxlQm01Ukk3MDMiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.phWEm5KmRIQi49nOUc1byFMNZI50WetD-8NKhHgqK00",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{apiUrl}}/extract",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"extract"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Extract Period",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODg4OFwvYXBpXC9hY2NvdW50XC9sb2dpbiIsImlhdCI6MTU4OTM0MDQ5MiwiZXhwIjoxNTg5MzQ0MDkyLCJuYmYiOjE1ODkzNDA0OTIsImp0aSI6InZmT3AyckxlQm01Ukk3MDMiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.phWEm5KmRIQi49nOUc1byFMNZI50WetD-8NKhHgqK00",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{apiUrl}}/extract/period/2020-05-13/2020-05-14",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"extract",
+								"period",
+								"2020-05-13",
+								"2020-05-14"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

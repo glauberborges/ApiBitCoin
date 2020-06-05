@@ -1,0 +1,26 @@
+web:
+   build: .
+   environment:
+     - ALLOW_OVERRIDE=true
+   ports:
+     - "8888:80"
+   links:
+     - db
+   volumes:
+     - ./www/:/var/www/html/
+     - ./config/php.ini:/usr/local/etc/php
+   container_name: serve_web
+
+db:
+  image: mariadb
+  restart: always
+  volumes:
+    - ./db:/var/lib/mysql
+  environment:
+    MYSQL_ROOT_PASSWORD: root
+    MYSQL_USER: root
+    MYSQL_PASSWORD: root
+    MYSQL_DATABASE: api_bitcoin
+  ports:
+    - "8889:3306"
+  container_name: serve_db
